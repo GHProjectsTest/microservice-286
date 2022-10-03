@@ -116,6 +116,35 @@ public class MensaTest {
   }
 
 
+  /**
+   * 
+   * Test for the Successfulcreatedishrating_ID67674 method.
+   * 
+   */
+  @Test
+  public void testSuccessfulcreatedishrating_ID67674() {
+    MiniClientCoverage c = new MiniClientCoverage(mainPath);
+    c.setConnectorEndpoint(connector.getHttpEndpoint());
+    
+        
+    try {
+      c.setLogin(AnonymousAgentImpl.IDENTIFIER, "");
+      ClientResponse result = c.sendRequest("POST", "/dishes/{id}/ratings", """
+{
+  "stars": 5,
+  "comment": "Delicious!"
+}""", "application/json", "*/*", new HashMap<>(), "1");
+      System.out.println("Result of request with id: 472510: " + result.getResponse().trim());
+    
+      Assert.assertEquals("[434711]", 201, result.getHttpCode());
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      fail("Exception: " + e);
+    }
+
+    
+  }
 
 
 
